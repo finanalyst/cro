@@ -203,6 +203,12 @@ The result will be:
 The hash fallback is to ease the transition from using a `Hash` at first, and
 then refactoring towards a model object later on.
 
+Note that B<if> a method call exists for a C<Str> type, eg., C<.path> B<and> the topic object is a `Hash`
+but does not contain a key specified in a template eg., C<.path>, B<then> a reference in the template to
+C<.path> will lead to the method call. This may lead to unexpected results if a user has provided data
+to the template in the form of a `Hash`. It is possible to disambiguate in the template between a
+`Hash` key by using the indexer form, eg., C<  <.<path>> >, and the method form C< <.path()> >.
+
 Various other forms are available:
 
 * `<.elems()>` will always be a method call, even if used on an `Associative`
